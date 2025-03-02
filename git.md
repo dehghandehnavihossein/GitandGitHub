@@ -34,3 +34,12 @@ nothing added to commit but untracked files present (use "git add" to track)
 rm 'test1.py'
 ```
 ---
+انتقال فایل به repo
+``` 
+(pro) PS C:\Users\VIVAN\PycharmProjects\Git & Github> git commit -m 'create new file test2.py'
+[master 24afd1c] create new file test2.py
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test2.py
+
+```
+---

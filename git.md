@@ -138,3 +138,102 @@ rm 'test1.py'
 - هر کامیت یک هش منحصر به فرد دارد
 - می‌توانید با استفاده از این دستورات، تاریخچه تغییرات را به دقت بررسی کنید
 - فیلترهای مختلف امکان جستجوی دقیق در تاریخچه را فراهم می‌کنند
+
+
+### کامیت مستقیم با `-a`
+
+برای اضافه کردن و کامیت کردن همزمان فایل‌های تغییر یافته (فقط برای فایل‌هایی که قبلاً تحت کنترل گیت هستند):
+
+```bash
+> git commit -am "update test1"
+[master aa3e98e] update test1
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+```
+
+این دستور ترکیبی از `git add` (برای فایل‌های تغییر یافته، نه فایل‌های جدید) و `git commit` است.
+
+پس از اجرای دستور، وضعیت مخزن به این صورت خواهد بود:
+
+```bash
+> git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+nothing to commit, working tree clean
+```
+
+### مشاهده جزئیات یک کامیت
+
+برای مشاهده تغییرات دقیق در یک کامیت مشخص:
+
+```bash
+> git show aa3e98e
+commit aa3e98e45306244b804092315e2e6b1228db31ab (HEAD -> master)
+Author: hosseindehghandehnavi <dehghandehnavihossein@gmail.com>
+Date:   Sat Mar 8 10:47:23 2025 +0330
+    update test1
+diff --git a/test1.py b/test1.py
+index c70ced9..0cdb229 100644
+--- a/test1.py
++++ b/test1.py
+@@ -1,2 +1,4 @@
+ x = 21
+-print('x =',x)
+\ No newline at end of file
++print('x =',x)
++
++print("hello world")
+\ No newline at end of file
+```
+
+همچنین می‌توان تغییرات یک فایل خاص در کامیت را مشاهده کرد:
+
+```bash
+> git show aa3e98e test2.py
+```
+
+### تعریف نام مستعار (Alias) برای دستورات
+
+برای ساده‌تر کردن دستورات پیچیده و تکراری، می‌توان از نام مستعار استفاده کرد:
+
+```bash
+> git log --oneline
+aa3e98e (HEAD -> master) update test1
+2fee4a7 (origin/master) update
+c5f55a1 add git log
+a143203 Updating and improving git.md with AI
+bcd9120 transfer to repo
+24afd1c create new file test2.py
+b778f48 create new file test2.py
+```
+
+تعریف نام مستعار برای پروژه فعلی (محلی):
+
+```bash
+> git config --local alias.lgo "log --oneline"
+```
+
+اکنون می‌توان از دستور کوتاه‌تر استفاده کرد:
+
+```bash
+> git lgo
+aa3e98e (HEAD -> master) update test1
+2fee4a7 (origin/master) update
+c5f55a1 add git log
+a143203 Updating and improving git.md with AI
+bcd9120 transfer to repo
+24afd1c create new file test2.py
+b778f48 create new file test2.py
+```
+
+**نکته مهم**: نام مستعار تعریف شده با `--local` فقط در پروژه جاری قابل استفاده است. برای استفاده در تمام پروژه‌ها، باید از `--global` استفاده کنید:
+
+```bash
+> git config --global alias.lgo "log --oneline"
+```
+
+### مزایای استفاده از نام مستعار
+
+1. کاهش تایپ برای دستورات پیچیده و طولانی
+2. ایجاد میانبر برای ترکیب‌های پرکاربرد دستورات
+3. سفارشی‌سازی واسط کاربری گیت مطابق با نیازهای شخصی

@@ -355,10 +355,10 @@ Automatic merge failed; fix conflicts and then commit the result.
 1. فایل‌های دارای تداخل را باز کنید
 2. بخش‌های مشخص شده با `<<<<<<< HEAD`, `=======`, و `>>>>>>> feature-branch` را ویرایش کنید
 3. تغییرات را اضافه کرده و کامیت کنید:
-   ```bash
-   > git add file1.txt
-   > git commit -m "Resolve merge conflict"
-   ```
+```bash
+> git add file1.txt
+> git commit -m "Resolve merge conflict"
+```
 
 ## توصیه‌هایی برای جلوگیری از تداخل
 1. هر برنچ را برای یک هدف مشخص و محدود ایجاد کنید

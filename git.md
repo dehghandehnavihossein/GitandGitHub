@@ -597,3 +597,53 @@ $ git config --global core.excludesfile ~/.gitignore_global
    ```
    $ git add -f filename.txt
    ```
+   
+## دستور `git checkout`
+
+### 1. بررسی نسخه خاص یک کامیت
+```bash
+$ git checkout <commit-hash>
+```
+یادداشت: در این حالت شما در وضعیت "Detached HEAD" قرار می‌گیرید که می‌توانید تغییرات آزمایشی ایجاد کنید.
+
+### 2. بررسی فایل خاص از یک کامیت
+```bash
+$ git checkout <commit-hash> <filename>
+```
+- فقط فایل مشخص شده به نسخه کامیت انتخابی برمی‌گردد
+
+### 3. بازگشت به برنچ اصلی
+```bash
+$ git switch master
+```
+
+### 4. حرکت نسبی در تاریخچه کامیت‌ها
+```bash
+$ git checkout HEAD~3  # 3 کامیت به عقب
+```
+
+## دستور `git restore` (دستور جدید‌تر)
+
+### 1. برگرداندن تغییرات در محیط کاری
+```bash
+$ git restore <filename>
+```
+- تغییرات انجام شده در فایل را به آخرین کامیت برمی‌گرداند
+
+### 2. خارج کردن فایل از استیجینگ
+```bash
+$ git restore --staged <filename>
+```
+- فایل را از منطقه استیجینگ خارج می‌کند بدون حذف تغییرات
+
+### 3. بازگرداندن فایل به نسخه خاص
+```bash
+$ git restore --source=<commit-hash> <filename>
+```
+- بازگرداندن فایل به نسخه مشخص شده بدون تغییر HEAD
+
+### مثال‌های بیشتر
+```bash
+$ git restore --source=HEAD~3 test1.py  # بازگرداندن به 3 کامیت قبل
+$ git restore --source=HEAD test1.py    # بازگرداندن به نقطه فعلی
+```
